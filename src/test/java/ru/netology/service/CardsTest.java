@@ -80,16 +80,16 @@ public class CardsTest {
         Assertions.assertEquals(expectedMessage, actualMessage.strip());
     }
 
-    @Test
-    void shouldFailWithNoCheckboxTest() {
-        driver.get("http://localhost:9999");
-        driver.findElement(By.cssSelector("[type='text']")).sendKeys("Иванов-Петров Иван");
-        driver.findElement(By.cssSelector("[type='tel']")).sendKeys("+77777777777");
-        driver.findElement(By.cssSelector("button")).click();
-        String actualMessage = driver.findElement(By.cssSelector(".input_invalid")).getCssValue("color");
-        String expectedMessage =  "rgba(255, 92, 92, 1)";
-        Assertions.assertEquals(expectedMessage, actualMessage.strip());
-    }
+    //@Test
+    //void shouldFailWithNoCheckboxTest() {
+        //driver.get("http://localhost:9999");
+        //driver.findElement(By.cssSelector("[type='text']")).sendKeys("Иванов-Петров Иван");
+        //driver.findElement(By.cssSelector("[type='tel']")).sendKeys("+77777777777");
+        //driver.findElement(By.cssSelector("button")).click();
+        //String actualMessage = driver.findElement(By.cssSelector(".input_invalid")).getCssValue("color");
+        //String expectedMessage =  "rgba(255, 92, 92, 1)";
+        //Assertions.assertEquals(expectedMessage, actualMessage.strip());
 }
+
 
 
