@@ -20,12 +20,9 @@ public class CardsTest {
     @BeforeEach
     void setUp() {
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("start-maximized");
-        options.addArguments("disable-infobars");
-        options.addArguments("--headless");
-        options.addArguments("--disable-extensions");
         options.addArguments("--disable-dev-shm-usage");
         options.addArguments("--no-sandbox");
+        options.addArguments("--headless");
         driver = new ChromeDriver(options);
     }
 
