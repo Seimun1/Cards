@@ -33,7 +33,7 @@ public class CardsTest {
         }
     }
     @Test
-    void shouldTest() {
+    void shouldTest() throws InterruptedException {
         driver.get("http://localhost:9999");
         driver.findElement(By.cssSelector("[type='text']")).sendKeys("Иванов-Петров Иван");
         driver.findElement(By.cssSelector("[type='tel']")).sendKeys("+77777777777");
@@ -90,6 +90,7 @@ public class CardsTest {
         //String expectedMessage =  "rgba(255, 92, 92, 1)";
         //Assertions.assertEquals(expectedMessage, actualMessage.strip());
 }
+
 
 
 
