@@ -7,9 +7,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -29,6 +29,7 @@ public class CardsTest {
         options.addArguments("--no-sandbox");
         options.addArguments("--headless");
         driver = new ChromeDriver(options);
+        driver.get("http://localhost:9999");
     }
 
     @AfterEach
@@ -39,147 +40,130 @@ public class CardsTest {
 
     @Test
     void shouldPositiveTest1() {
-        driver.get("http://localhost:9999");
-        WebElement form = driver.findElement(By.cssSelector("form"));
-        form.findElement(By.cssSelector("[data-test-id=name] input")).sendKeys("Иванов Иван");
-        form.findElement(By.cssSelector("[data-test-id=phone] input")).sendKeys("+79012345678");
-        form.findElement(By.cssSelector("[data-test-id=agreement]")).click();
-        form.findElement(By.cssSelector("button")).click();
-        String text = driver.findElement(By.className("order-success")).getText();
-        assertEquals("Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.", text.trim());
+        driver.findElement(By.cssSelector("[data-test-id='name'] input")).sendKeys("Иванов Иван");
+        driver.findElement(By.cssSelector("[data-test-id='phone'] input")).sendKeys("+79012345678");
+        driver.findElement(By.cssSelector("[data-test-id='agreement']")).click();
+        driver.findElement(By.cssSelector("button.button")).click();
+        var actualText = driver.findElement(By.className("[data-test-id=order-success]")).getText().trim();
+        assertEquals("Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.", actualText);
 
     }
 
     @Test
     void shouldPositiveTest2() {
-        driver.get("http://localhost:9999");
-        WebElement form = driver.findElement(By.cssSelector("form"));
-        form.findElement(By.cssSelector("[data-test-id=name] input")).sendKeys("Иванов-Петров Иван");
-        form.findElement(By.cssSelector("[data-test-id=phone] input")).sendKeys("+79012345678");
-        form.findElement(By.cssSelector("[data-test-id=agreement]")).click();
-        form.findElement(By.cssSelector("button")).click();
-        String text = driver.findElement(By.className("order-success]")).getText();
-        assertEquals("Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.", text.trim());
+        driver.findElement(By.cssSelector("[data-test-id='name'] input")).sendKeys("Иванов-Петров Иван");
+        driver.findElement(By.cssSelector("[data-test-id='phone'] input")).sendKeys("+79012345678");
+        driver.findElement(By.cssSelector("[data-test-id='agreement']")).click();
+        driver.findElement(By.cssSelector("button.button")).click();
+        var actualText = driver.findElement(By.className("[data-test-id=order-success]")).getText().trim();
+        assertEquals("Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.", actualText);
     }
 
     @Test
     void shouldPositiveTest3() {
-        driver.get("http://localhost:9999");
-        WebElement form = driver.findElement(By.cssSelector("form"));
-        form.findElement(By.cssSelector("[data-test-id=name] input")).sendKeys("Иванова-Петрова Анна-Мария");
-        form.findElement(By.cssSelector("[data-test-id=phone] input")).sendKeys("+79012345678");
-        form.findElement(By.cssSelector("[data-test-id=agreement]")).click();
-        form.findElement(By.cssSelector("button")).click();
-        String text = driver.findElement(By.className("order-success]")).getText();
-        assertEquals("Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.", text.trim());
+        driver.findElement(By.cssSelector("[data-test-id='name'] input")).sendKeys("Иванова-Петрова Анна-Мария");
+        driver.findElement(By.cssSelector("[data-test-id='phone'] input")).sendKeys("+79012345678");
+        driver.findElement(By.cssSelector("[data-test-id='agreement']")).click();
+        driver.findElement(By.cssSelector("button.button")).click();
+        var actualText = driver.findElement(By.className("[data-test-id=order-success]")).getText().trim();
+        assertEquals("Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.", actualText);
     }
 
     @Test
     void shouldPositiveTest4() {
-        driver.get("http://localhost:9999");
-        WebElement form = driver.findElement(By.cssSelector("form"));
-        form.findElement(By.cssSelector("[data-test-id=name] input")).sendKeys("Никитина Петрова Александра");
-        form.findElement(By.cssSelector("[data-test-id=phone] input")).sendKeys("+79012345678");
-        form.findElement(By.cssSelector("[data-test-id=agreement]")).click();
-        form.findElement(By.cssSelector("button")).click();
-        String text = driver.findElement(By.className("order-success]")).getText();
-        assertEquals("Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.", text.trim());
+        driver.findElement(By.cssSelector("[data-test-id='name'] input")).sendKeys("Никитина Петрова Александра");
+        driver.findElement(By.cssSelector("[data-test-id='phone'] input")).sendKeys("+79012345678");
+        driver.findElement(By.cssSelector("[data-test-id='agreement']")).click();
+        driver.findElement(By.cssSelector("button.button")).click();
+        var actualText = driver.findElement(By.className("[data-test-id=order-success]")).getText().trim();
+        assertEquals("Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.", actualText);
     }
 
     @Test
     void shouldNegativeResultNameTest1() {
-        driver.get("http://localhost:9999");
-        WebElement form = driver.findElement(By.cssSelector("form"));
-        form.findElement(By.cssSelector("[data-test-id=name] input")).sendKeys("Ivanov Ivan");
-        form.findElement(By.cssSelector("[data-test-id=phone] input")).sendKeys("+79012345678");
-        form.findElement(By.cssSelector("[data-test-id=agreement]")).click();
-        form.findElement(By.cssSelector("button")).click();
-        String text = driver.findElement(By.className("[data-test-id='name'].input_invalid .input__sub")).getText();
-        assertEquals("Имя и Фамилия указаные неверно. Допустимы только русские буквы, пробелы и дефисы.", text.trim());
+        driver.findElement(By.cssSelector("[data-test-id='name'] input")).sendKeys("Ivanov Ivan");
+        driver.findElement(By.cssSelector("[data-test-id='phone'] input")).sendKeys("+79012345678");
+        driver.findElement(By.cssSelector("[data-test-id='agreement']")).click();
+        driver.findElement(By.cssSelector("button.button")).click();
+        assertEquals("Имя и Фамилия указаные неверно. Допустимы только русские буквы, пробелы и дефисы.",
+            driver.findElement(By.className("[data-test-id=name].input_invalid .input__sub")).getText().trim());
 
     }
 
     @Test
     void shouldNegativeResultPhoneNumberTest2() {
-        driver.get("http://localhost:9999");
-        WebElement form = driver.findElement(By.cssSelector("form"));
-        form.findElement(By.cssSelector("[data-test-id=name] input")).sendKeys("Иванов Иван");
-        form.findElement(By.cssSelector("[data-test-id=phone] input")).sendKeys("+7901234");
-        form.findElement(By.cssSelector("[data-test-id=agreement]")).click();
-        form.findElement(By.cssSelector("button")).click();
-        String text = driver.findElement(By.className("[data-test-id='phone'].input_invalid .input__sub")).getText();
-        assertEquals("Телефон указан неверно. Должно быть 11 цифр, например, +79012345678.", text.trim());
+        driver.findElement(By.cssSelector("[data-test-id='name'] input")).sendKeys("Иванов Иван");
+        driver.findElement(By.cssSelector("[data-test-id='phone'] input")).sendKeys("+7901234");
+        driver.findElement(By.cssSelector("[data-test-id='agreement']")).click();
+        driver.findElement(By.cssSelector("button.button")).click();
+        assertEquals("Телефон указан неверно. Должно быть 11 цифр, например, +79012345678.",
+            driver.findElement(By.className("[data-test-id=phone].input_invalid .input__sub")).getText().trim());
+
     }
 
     @Test
     void shouldNegativeResultPhoneNumberTest3() {
-        driver.get("http://localhost:9999");
-        WebElement form = driver.findElement(By.cssSelector("form"));
-        form.findElement(By.cssSelector("[data-test-id=name] input")).sendKeys("Петрова Мария");
-        form.findElement(By.cssSelector("[data-test-id=phone] input")).sendKeys("+7901234567888888888");
-        form.findElement(By.cssSelector("[data-test-id=agreement]")).click();
-        form.findElement(By.cssSelector("button")).click();
-        String text = driver.findElement(By.className("[data-test-id='phone'].input_invalid .input__sub")).getText();
-        assertEquals("Телефон указан неверно. Должно быть 11 цифр, например, +79012345678.", text.trim());
+        driver.findElement(By.cssSelector("[data-test-id='name'] input")).sendKeys("Петрова Мария");
+        driver.findElement(By.cssSelector("[data-test-id='phone'] input")).sendKeys("+7901234567888888888");
+        driver.findElement(By.cssSelector("[data-test-id='agreement']")).click();
+        driver.findElement(By.cssSelector("button.button")).click();
+        assertEquals("Телефон указан неверно. Должно быть 11 цифр, например, +79012345678.",
+            driver.findElement(By.className("[data-test-id=phone].input_invalid .input__sub")).getText().trim());
+
     }
 
     @Test
     void shouldNegativeResultPhoneNumberTest4() {
-        driver.get("http://localhost:9999");
-        WebElement form = driver.findElement(By.cssSelector("form"));
-        form.findElement(By.cssSelector("[data-test-id=name] input")).sendKeys("Иванов Иван");
-        form.findElement(By.cssSelector("[data-test-id=phone' input")).sendKeys("89012345678");
-        form.findElement(By.cssSelector("[data-test-id=agreement]")).click();
-        form.findElement(By.cssSelector("button")).click();
-        String text = driver.findElement(By.className("[data-test-id='phone'].input_invalid .input__sub")).getText();
-        assertEquals("Телефон указан неверно. Должно быть 11 цифр, например, +79012345678.", text.trim());
+        driver.findElement(By.cssSelector("[data-test-id='name'] input")).sendKeys("Иванов Иван");
+        driver.findElement(By.cssSelector("[data-test-id='phone'] input")).sendKeys("89012345678");
+        driver.findElement(By.cssSelector("[data-test-id='agreement']")).click();
+        driver.findElement(By.cssSelector("button.button")).click();
+        assertEquals("Телефон указан неверно. Должно быть 11 цифр, например, +79012345678.",
+            driver.findElement(By.className("[data-test-id=phone].input_invalid .input__sub")).getText().trim());
+
     }
 
     @Test
     void shouldNegativeResultNameTest5() {
-        driver.get("http://localhost:9999");
-        WebElement form = driver.findElement(By.cssSelector("form"));
-        form.findElement(By.cssSelector("[data-test-id=name] input")).sendKeys("");
-        form.findElement(By.cssSelector("[data-test-id=phone] input")).sendKeys("+79012345678");
-        form.findElement(By.cssSelector("[data-test-id=agreement]")).click();
-        form.findElement(By.cssSelector("button")).click();
-        String text = driver.findElement(By.className("[data-test-id='name'].input_invalid .input__sub")).getText();
-        assertEquals("Поле обязательно для заполнения.", text.trim());
+        driver.findElement(By.cssSelector("[data-test-id='name'] input")).sendKeys("");
+        driver.findElement(By.cssSelector("[data-test-id='phone'] input")).sendKeys("+79012345678");
+        driver.findElement(By.cssSelector("[data-test-id='agreement']")).click();
+        driver.findElement(By.cssSelector("button.button")).click();
+        assertEquals("Поле обязательно для заполнения.",
+            driver.findElement(By.className("[data-test-id=name].input_invalid .input__sub")).getText().trim());
+
     }
 
     @Test
     void shouldNegativeResultPhoneNumberTest6() {
-        driver.get("http://localhost:9999");
-        WebElement form = driver.findElement(By.cssSelector("form"));
-        form.findElement(By.cssSelector("[data-test-id=name] input")).sendKeys("Никитина Александра");
-        form.findElement(By.cssSelector("[data-test-id=phone] input")).sendKeys("");
-        form.findElement(By.cssSelector("[data-test-id=agreement]")).click();
-        form.findElement(By.cssSelector("button")).click();
-        String text = driver.findElement(By.className("[data-test-id='phone'].input_invalid .input__sub")).getText();
-        assertEquals("Поле обязательно для заполнения.", text.trim());
+        driver.findElement(By.cssSelector("[data-test-id='name'] input")).sendKeys("Никитина Александра");
+        driver.findElement(By.cssSelector("[data-test-id='phone'] input")).sendKeys("");
+        driver.findElement(By.cssSelector("[data-test-id='agreement']")).click();
+        driver.findElement(By.cssSelector("button.button")).click();
+        assertEquals("Поле обязательно для заполнения.",
+            driver.findElement(By.className("[data-test-id=phone].input_invalid .input__sub")).getText().trim());
+
     }
 
     @Test
     void shouldNegativeResultAgreementTest7() {
-        driver.get("http://localhost:9999");
-        WebElement form = driver.findElement(By.cssSelector("form"));
-        form.findElement(By.cssSelector("[data-test-id=name] input")).sendKeys("Никитина Александра");
-        form.findElement(By.cssSelector("[data-test-id=phone] input")).sendKeys("+79012345678");
-        form.findElement(By.cssSelector("button")).click();
-        String text = driver.findElement(By.className("[data-test-id='agreement'].input_invalid .input__sub")).getText();
-        assertEquals("Я соглашаюсь с условиями обработки и использования моих персональных данных и разрешаю сделать запрос в бюро кредитных историй.", text.trim());
+        driver.findElement(By.cssSelector("[data-test-id='name'] input")).sendKeys("Никитина Александра");
+        driver.findElement(By.cssSelector("[data-test-id='phone'] input")).sendKeys("+79012345678");
+        driver.findElement(By.cssSelector("button.button")).click();
+        assertEquals("Я соглашаюсь с условиями обработки и использования моих персональных данных и разрешаю сделать запрос в бюро кредитных историй.",
+            driver.findElement(By.className("[data-test-id=agreement].input_invalid .input__sub")).getText().trim());
     }
+
 
     @Test
     void shouldNegativeResultTest8() {
-        driver.get("http://localhost:9999");
-        WebElement form = driver.findElement(By.cssSelector("form"));
-        form.findElement(By.cssSelector("[data-test-id=name] input")).sendKeys("");
-        form.findElement(By.cssSelector("[data-test-id=phone] input")).sendKeys("");
-        form.findElement(By.cssSelector("[data-test-id=agreement]")).click();
-        form.findElement(By.cssSelector("button")).click();
-        String text = driver.findElement(By.className("[data-test-id=''].input_invalid .input__sub")).getText();
-        assertEquals("Поле обязательно для заполнения.", text.trim());
+        driver.findElement(By.cssSelector("[data-test-id='name'] input")).sendKeys("");
+        driver.findElement(By.cssSelector("[data-test-id='phone'] input")).sendKeys("");
+        driver.findElement(By.cssSelector("[data-test-id='agreement']")).click();
+        driver.findElement(By.cssSelector("button.button")).click();
+        assertEquals("Поле обязательно для заполнения.",
+            driver.findElement(By.className("[data-test-id=name, phone].input_invalid .input__sub")).getText().trim());
+
     }
 }
 
